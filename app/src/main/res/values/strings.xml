@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Movies</string>
+    <string name="lorem">"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu augue ut nibh consequat molestie. Mauris vitae velit nibh. Sed vulputate est ligula, vitae porta magna fringilla vulputate. Mauris hendrerit eros quis lorem ornare lobortis. Sed vel arcu eu justo hendrerit suscipit vitae sit amet lectus. Nunc nec egestas lacus. Nam pellentesque nunc at ex facilisis rhoncus. Maecenas lacus orci, porttitor nec aliquam ut, congue eget est. Aliquam ac est nisi. "</string>
 </resources>
