@@ -71,4 +71,74 @@ Cada vista de la UI, va a depender de un **estado**. Cada vez que ese estado cam
 Para evitar que se "reinicie" el estado cada vez que el `Composable` vuelve a ejecutarse, se utiliza una función llamada ***`remember{}`***, la cual recibe un *lambda* que se ejecuta la primera vez y, en ejecuciones posteriores, devuelve ese mismo valor computado al principio.  
 A su vez, existe una variante de `remember{}` que es un delegado de propiedades (ver item 2.5 sobre *Delegated properties* en [Apuntes de Kotlin](https://github.com/Ulises-Jota/Apuntes-y-Navaja-Suiza/blob/master/Apuntes-Kotlin.md#2-propiedades-y-fields-en-kotlin)). De esta forma, se puede evitar usar el `.value` para recuperar el valor donde se requiere.  
 Sin embargo, cuando la *activity* se destruye y recrea (por ejemplo, al rotar el dispositivo), ese estado se pierde. Para evitar esto y guardar el estado en esos casos, se utiliza ***`rememberSaveable{}`***. Hay que tener en cuenta que esta variante utiliza el mismo `Bundle` que la *activity*, por lo que el tipo del valor a almacenar debe ser alguno de los soportados por los `Bundle`. Para solucionar eso, se le puede pasar como parámetro un objeto de tipo ***`Saver`*** que, dado un valor, lo convierte a un `Bundle` y eso se puede almacenar.  
-Pero puede pasar que otras vistas necesiten un mismo estado, o que se vaya a utilizar en otras partes de la aplicación, o cuando se quiere que el *ViewModel* gestione el estado. Para esos casos, existe una técnica conocida como ***State hoisting***, que consiste en "extraer" ese estado de las vistas y que el control del mismo recaiga en otro elemento, de jerarquía superior. En vez de crear el estado dentro del `Composable`, se sustituye por dos argumentos: uno proporciona el valor y el otro es un *lambda* que modifica ese valor. 
+Pero puede pasar que otras vistas necesiten un mismo estado, o que se vaya a utilizar en otras partes de la aplicación, o cuando se quiere que el *ViewModel* gestione el estado. Para esos casos, existe una técnica conocida como ***State hoisting***, que consiste en "extraer" ese estado de las vistas y que el control del mismo recaiga en otro elemento, de jerarquía superior. En vez de crear el estado dentro del `Composable`, se sustituye por dos argumentos: uno proporciona el valor y el otro es un *lambda* que modifica ese valor.
+
+
+#### 8. ***AppBar*** y ***Scaffold***
+Lo primero que se debe hacer, es ir al ***Manifest*** y asegurarse que el ***theme*** de la *activity* no tenga (o herede de un tema que no tenga) ***ActionBar***.  
+    Por ejemplo: `<style name="Theme.MyMovies" parent="android:Theme.Material.Light.NoActionBar">`  
+
+Al igual que en los *xml*, la *AppBar* se puede colocar en cualquier parte de la pantalla. Pero si se quiere usar en la parte superior de la pantalla (lo habitual), lo ideal es usar el `Composable` ***`Scaffold`***. Este componente permite posicionar elementos típicos de *Material* en sus posiciones habituales sin necesidad de hacer nada extra.  
+***`Scaffold`*** es el ejemplo perfecto de un patrón que se repite en ***Jetpack Compose***, llamado ***Slot API***. Este patrón consiste básicamente en que el componente ofrece huecos o *slots* donde se puede añadir lo que uno quiera (*lambdas* genéricos que aceptan contentido *composable*).  
+Por ejemplo, el parámetro `title` de `TopAppBar` no obliga a que deba contener un `Text` sí o sí. Bien podría contener una `Row` con un texto, un `Spacer` y un ícono:  
+
+````kotlin
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(title = {
+                                Row {
+                                    Text(text = stringResource(id = R.string.app_name))
+                                    Spacer(modifier = Modifier.width(16.dp))
+                                    Icon(imageVector = Icons.Default.Android, contentDescription = null)
+                                }
+                            })
+                        }
+                    )
+````  
+
+También se puede agregar un **ícono de navegación** de forma muy simple con un ***`IconButton`*** (un botón que contiene un ícono):
+
+````kotlin
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                title = { Text(text = stringResource(id = R.string.app_name)) },
+                                navigationIcon = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Menu,
+                                            contentDescription = null
+                                        )
+                                    }
+                                }
+                            )
+                        }
+                    )
+````  
+
+También es posible agregar **acciones de menú**:
+
+````kotlin
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                title = { Text(text = stringResource(id = R.string.app_name)) },
+                                actions = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Search,
+                                            contentDescription = null
+                                        )
+                                    }
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Share,
+                                            contentDescription = null
+                                        )
+                                    }
+                                }
+                            )
+                        }
+                    )
+````  
+

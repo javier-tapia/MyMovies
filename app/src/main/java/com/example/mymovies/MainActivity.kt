@@ -4,14 +4,37 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.material.TextField
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Android
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.PlayCircleOutline
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -34,7 +57,6 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.mymovies.MediaItem.*
 import com.example.mymovies.ui.theme.MyMoviesTheme
 
 class MainActivity : ComponentActivity() {
@@ -47,13 +69,29 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    // Estado a utilizar en todas las vistas.
-//                    var text by rememberSaveable { mutableStateOf("") }
-                    val (value, onValueChange) = rememberSaveable { mutableStateOf("") }
-                    StateSample(
-                        value = value,
-                        onValueChange = onValueChange
-                    )
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                title = { Text(text = stringResource(id = R.string.app_name)) },
+                                actions = {
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Search,
+                                            contentDescription = null
+                                        )
+                                    }
+                                    IconButton(onClick = { /*TODO*/ }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Share,
+                                            contentDescription = null
+                                        )
+                                    }
+                                }
+                            )
+                        }
+                    ) { padding ->
+                        MediaList(modifier = Modifier.padding(padding))
+                    }
                 }
             }
         }
@@ -92,7 +130,7 @@ fun StateSample(value: String, onValueChange: (String) -> Unit) {
 
 //@Preview
 @Composable
-fun MediaList() {
+fun MediaList(modifier: Modifier = Modifier) {
 //    LazyColumn(
 //        contentPadding = PaddingValues(4.dp),
 //        verticalArrangement = Arrangement.spacedBy(4.dp)
@@ -114,7 +152,8 @@ fun MediaList() {
         contentPadding = PaddingValues(2.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp),
 //        columns = GridCells.Fixed(2)
-        columns = GridCells.Adaptive(150.dp)
+        columns = GridCells.Adaptive(150.dp),
+        modifier = modifier
     ) {
         items(getMedia()) { item ->
             MediaListItem(item, Modifier.padding(2.dp))
@@ -161,7 +200,7 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
-            if (item.type == Type.VIDEO) {
+            if (item.type == MediaItem.Type.VIDEO) {
                 Icon(
                     imageVector = Icons.Default.PlayCircleOutline,
                     contentDescription = null,
