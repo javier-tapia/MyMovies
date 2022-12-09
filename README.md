@@ -12,6 +12,7 @@ Primeros pasos con ***Jetpack Compose*** (curso Antonio Leiva)
 - [6. **Listas** y ***Grids***: ***`LazyColumn`***, ***`LazyRow`***, ***`LazyVerticalGrid`***, ***`LazyHorizontalGrid`***](#6-listas-y-grids-lazycolumn-lazyrow-lazyverticalgrid-lazyhorizontalgrid)
 - [7. El **estado** en *JetpackCompose*](#7-el-estado-en-jetpackcompose)
 - [8. ***AppBar*** y ***Scaffold***](#8-appbar-y-scaffold)
+- [Referencias extra](#referencias-extra)
 
 ----
 
@@ -81,7 +82,7 @@ Lo primero que se debe hacer, es ir al ***Manifest*** y asegurarse que el ***the
     Por ejemplo: `<style name="Theme.MyMovies" parent="android:Theme.Material.Light.NoActionBar">`  
 
 Al igual que en los *xml*, la *AppBar* se puede colocar en cualquier parte de la pantalla. Pero si se quiere usar en la parte superior de la pantalla (lo habitual), lo ideal es usar el `Composable` ***`Scaffold`***. Este componente permite posicionar elementos típicos de *Material* en sus posiciones habituales sin necesidad de hacer nada extra.  
-***`Scaffold`*** es el ejemplo perfecto de un patrón que se repite en ***Jetpack Compose***, llamado ***Slot API***. Este patrón consiste básicamente en que el componente ofrece huecos o *slots* donde se puede añadir lo que uno quiera (*lambdas* genéricos que aceptan contentido *composable*).  
+***`Scaffold`*** es el ejemplo perfecto de un patrón que se repite en ***Jetpack Compose***, llamado ***Slot API***. Este patrón consiste básicamente en que el componente ofrece huecos o *slots* donde se puede añadir lo que uno quiera (*lambdas* genéricos que aceptan contentido *composable*). Ref.: [Practical Compose Slot API example](https://www.valueof.io/blog/compose-slot-api-example-composable-content-lambda)  
 Por ejemplo, el parámetro `title` de `TopAppBar` no obliga a que deba contener un `Text` sí o sí. Bien podría contener una `Row` con un texto, un `Spacer` y un ícono:  
 
 ````kotlin
@@ -144,3 +145,7 @@ También es posible agregar **acciones de menú**:
                     )
 ````  
 
+
+
+#### Referencias extra
+- [Practical Compose Slot API example](https://www.valueof.io/blog/compose-slot-api-example-composable-content-lambda)
