@@ -10,6 +10,8 @@ Primeros pasos con ***Jetpack Compose*** (curso Antonio Leiva)
 - [5. ***IMAGE*** y ***ICON***](#5-image-y-icon)
   - [5.1 ***`AsyncImage`***](#51-asyncimage)
 - [6. **Listas** y ***Grids***: ***`LazyColumn`***, ***`LazyRow`***, ***`LazyVerticalGrid`***, ***`LazyHorizontalGrid`***](#6-listas-y-grids-lazycolumn-lazyrow-lazyverticalgrid-lazyhorizontalgrid)
+- [7. El **estado** en *JetpackCompose*](#7-el-estado-en-jetpackcompose)
+- [8. ***AppBar*** y ***Scaffold***](#8-appbar-y-scaffold)
 
 ----
 
