@@ -155,6 +155,8 @@ Algunas recomendaciones a tener en cuenta a la hora de estructurar el código en
     Lo ideal, es crear ``Composables`` para definir cada una de las pantallas.
   - **Estructurar los paquetes de UI por pantallas:**  
     El código queda más ordenado, puede crecer de forma más extensible y se podrán crear tanto *feature* como ``Composables`` sin que se vuelva un desorden.
+  - **Extraer las dimensiones:**  
+    *Hardcodear* las dimensiones va a representar un problema si se quiere **configurar la aplicación para distintos tamaños de pantalla (dispositivos diferentes)**. Para eso, es preferible extraerlos al archivo ***dimens*** y obtenerlos con el método ``dimensionResource``.
 
 #### Referencias extra
 - [Practical Compose Slot API example](https://www.valueof.io/blog/compose-slot-api-example-composable-content-lambda)

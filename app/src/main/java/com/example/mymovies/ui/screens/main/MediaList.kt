@@ -24,10 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.mymovies.R
 import com.example.mymovies.model.MediaItem
 import com.example.mymovies.model.getMedia
 
@@ -35,13 +37,13 @@ import com.example.mymovies.model.getMedia
 @Composable
 fun MediaList(modifier: Modifier = Modifier) {
     LazyVerticalGrid(
-        contentPadding = PaddingValues(2.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
-        columns = GridCells.Adaptive(150.dp),
+        contentPadding = PaddingValues(dimensionResource(id = R.dimen.padding_xsmall)),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.space_padding)),
+        columns = GridCells.Adaptive(dimensionResource(id = R.dimen.cell_min_width)),
         modifier = modifier
     ) {
         items(getMedia()) { item ->
-            MediaListItem(item, Modifier.padding(2.dp))
+            MediaListItem(item, Modifier.padding(dimensionResource(id = R.dimen.padding_xsmall)))
         }
     }
 }
@@ -54,7 +56,7 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
     ) {
         Box(
             modifier = Modifier
-                .height(200.dp)
+                .height(dimensionResource(id = R.dimen.cell_thumb_height))
                 .fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
@@ -71,7 +73,7 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
                 Icon(
                     imageVector = Icons.Default.PlayCircleOutline,
                     contentDescription = null,
-                    modifier = Modifier.size(92.dp),
+                    modifier = Modifier.size(dimensionResource(id = R.dimen.cell_play_icon_size)),
                     tint = Color.White
                 )
             }
@@ -81,7 +83,7 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colors.secondary)
-                .padding(16.dp)
+                .padding(dimensionResource(id = R.dimen.padding_medium))
         ) {
             Text(
                 text = item.title,
