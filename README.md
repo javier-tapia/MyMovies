@@ -15,6 +15,7 @@ Primeros pasos con ***Jetpack Compose*** (curso Antonio Leiva)
 - [9. Estructurar el código en ***Jetpack Compose***](#9-estructurar-el-código-en-jetpack-compose)
 - [10. ***Navegación básica con `Navigation Compose`***](#10-navegación-básica-con-navigation-compose)
 - [11. Uso de ***Cards*** de ***Material Design*** en ***Jetpack Compose***](#11-uso-de-cards-de-material-design-en-jetpack-compose)
+- [12. Temas, colores, tipografías y formas en ***Jetpack Compose***](#12-temas-colores-tipografías-y-formas-en-jetpack-compose)
 - [Referencias extra](#referencias-extra)
 
 ----
@@ -197,6 +198,29 @@ Lo tercero que se necesita, es recuperar los argumentos para poder propagarlos. 
 
 #### 11. Uso de ***Cards*** de ***Material Design*** en ***Jetpack Compose***
 Lo único que se necesita, es rodear el componente que uno quiera con el componente de [***Cards*** de ***Material Design***](https://m3.material.io/components/cards/overview).
+
+
+#### 12. Temas, colores, tipografías y formas en ***Jetpack Compose***
+En *Jetpack Compose*, gracias a unas pocas modificaciones que se pueden hacer sobre los **temas**, todos los componentes de UI se van a actualizar/adaptar para seguir la configuración de ese tema de forma rápida y sencilla.  
+Dentro del ***package ``ui/theme``*** se encuentra toda la información sobre el tema, en los archivos `Theme`, `Color`, `Shape` y `Type`. Cada uno de ellos configura ciertas partes del tema.  
+La función ***``MaterialTheme``*** es un `Composable` que resuelve un `content`, por lo que todo lo que se incluya dentro de esta función, aplicará en `Material Theme` por defecto.
+
+````kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MaterialTheme(
+                colors = lightColors(),
+                typography = Typography,
+                shapes = Shapes
+            ) {
+                // Whatever, with configured theme.
+            }
+        }
+    }
+}
+````
 
 
 #### Referencias extra
