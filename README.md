@@ -149,8 +149,10 @@ También es posible agregar **acciones de menú**:
 Algunas recomendaciones a tener en cuenta a la hora de estructurar el código en ***Jetpack Compose***:  
   - **Crear un ``Composable`` con la base de la aplicación:**  
     Lo ideal es tener un ``Composable`` que defina las configuraciones y reutilizarlo en todos lados. Es importante recordar que **las funciones `Composable` deben devolver `Unit`, ya que estas funciones emiten componentes de UI**, pero no devuelven nada.
-  - **Dividir el ``Composable`` en otros más pequeños:**
+  - **Dividir el ``Composable`` en otros más pequeños:**  
     Los ``Composables`` deberían ser auto-explicativos y tener nombres semánticos.
+  - **Crear ``Composables`` que definan las pantallas:**  
+    Lo ideal, es crear ``Composables`` para definir cada una de las pantallas.
 
 #### Referencias extra
 - [Practical Compose Slot API example](https://www.valueof.io/blog/compose-slot-api-example-composable-content-lambda)

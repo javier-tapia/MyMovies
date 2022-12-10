@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.example.mymovies.ui.MainAppBar
+import com.example.mymovies.ui.MainScreen
 import com.example.mymovies.ui.MediaList
 import com.example.mymovies.ui.MyMoviesApp
 import com.example.mymovies.ui.theme.MyMoviesTheme
@@ -43,11 +44,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyMoviesApp {
-                Scaffold(
-                    topBar = { MainAppBar() }
-                ) { padding ->
-                    MediaList(modifier = Modifier.padding(padding))
-                }
+                MainScreen()
             }
         }
     }
