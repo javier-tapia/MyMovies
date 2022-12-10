@@ -12,6 +12,7 @@ Primeros pasos con ***Jetpack Compose*** (curso Antonio Leiva)
 - [6. **Listas** y ***Grids***: ***`LazyColumn`***, ***`LazyRow`***, ***`LazyVerticalGrid`***, ***`LazyHorizontalGrid`***](#6-listas-y-grids-lazycolumn-lazyrow-lazyverticalgrid-lazyhorizontalgrid)
 - [7. El **estado** en *JetpackCompose*](#7-el-estado-en-jetpackcompose)
 - [8. ***AppBar*** y ***Scaffold***](#8-appbar-y-scaffold)
+- [9. Estructurar el código en ***Jetpack Compose***](#9-estructurar-el-cdigo-en-jetpack-compose)
 - [Referencias extra](#referencias-extra)
 
 ----
