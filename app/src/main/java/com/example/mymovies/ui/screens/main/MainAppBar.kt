@@ -1,4 +1,4 @@
-package com.example.mymovies.ui
+package com.example.mymovies.ui.screens.main
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton

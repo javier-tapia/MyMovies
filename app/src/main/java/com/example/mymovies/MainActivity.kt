@@ -13,8 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
@@ -33,9 +31,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
-import com.example.mymovies.ui.MainAppBar
-import com.example.mymovies.ui.MainScreen
-import com.example.mymovies.ui.MediaList
+import com.example.mymovies.ui.screens.main.MainScreen
 import com.example.mymovies.ui.MyMoviesApp
 import com.example.mymovies.ui.theme.MyMoviesTheme
 

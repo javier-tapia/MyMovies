@@ -153,6 +153,8 @@ Algunas recomendaciones a tener en cuenta a la hora de estructurar el código en
     Los ``Composables`` deberían ser auto-explicativos y tener nombres semánticos.
   - **Crear ``Composables`` que definan las pantallas:**  
     Lo ideal, es crear ``Composables`` para definir cada una de las pantallas.
+  - **Estructurar los paquetes de UI por pantallas:**  
+    El código queda más ordenado, puede crecer de forma más extensible y se podrán crear tanto *feature* como ``Composables`` sin que se vuelva un desorden.
 
 #### Referencias extra
 - [Practical Compose Slot API example](https://www.valueof.io/blog/compose-slot-api-example-composable-content-lambda)

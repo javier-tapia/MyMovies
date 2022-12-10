@@ -1,4 +1,4 @@
-package com.example.mymovies.ui
+package com.example.mymovies.ui.screens.main
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold

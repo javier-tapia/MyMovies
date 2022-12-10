@@ -1,4 +1,4 @@
-package com.example.mymovies.ui
+package com.example.mymovies.ui.screens.main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -24,11 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.mymovies.MediaItem
-import com.example.mymovies.getMedia
+import com.example.mymovies.model.MediaItem
+import com.example.mymovies.model.getMedia
 
 //@Preview
 @Composable
@@ -88,4 +89,10 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun MediaListPreview() {
+    MediaList()
 }
