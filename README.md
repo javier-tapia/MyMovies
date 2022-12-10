@@ -13,6 +13,8 @@ Primeros pasos con ***Jetpack Compose*** (curso Antonio Leiva)
 - [7. El **estado** en *JetpackCompose*](#7-el-estado-en-jetpackcompose)
 - [8. ***AppBar*** y ***Scaffold***](#8-appbar-y-scaffold)
 - [9. Estructurar el código en ***Jetpack Compose***](#9-estructurar-el-código-en-jetpack-compose)
+- [10. ***Navegación básica con `Navigation Compose`***](#10-navegación-básica-con-navigation-compose)
+- [11. Uso de ***Cards*** de ***Material Design*** en ***Jetpack Compose***](#11-uso-de-cards-de-material-design-en-jetpack-compose)
 - [Referencias extra](#referencias-extra)
 
 ----
@@ -161,7 +163,7 @@ Algunas recomendaciones a tener en cuenta a la hora de estructurar el código en
     *Hardcodear* las dimensiones va a representar un problema si se quiere **configurar la aplicación para distintos tamaños de pantalla (dispositivos diferentes)**. Para eso, es preferible extraerlos al archivo ***dimens*** y obtenerlos con el método ``dimensionResource``.
 
 
-#### 10. ***Navegación básica con `Navigation Compose`***
+#### 10. Navegación básica con ***`Navigation Compose`***
 El componente de navegación de *Jetpack* (ver apunte sobre [Navigation component](https://github.com/Ulises-Jota/Apuntes-y-Navaja-Suiza/blob/master/Apuntes-Android.md#navigation-component)), provee soporte para las aplicaciones con ***Jetpack Compose***. Algo a tener en cuenta es que en ``Navigation Component`` se puede utilizar un diseñador para generar el grafo de navegación, pero esto no es posible con ``Navigation Compose``. En este caso, se realiza mediante código, con un DSL.  
 Para usar ``Navigation Compose``, se debe agregar la librería correspondiente: `implementation "androidx.navigation:navigation-compose:<VERSION>"`. Una vez incluida la dependencia, se debe configurar `Navigation Compose` para poder utilizarlo:  
 Lo primero que se necesita, es un `NavHostController`. Para que no se duplique este controlador, se usa una función llamada `rememberNavController` (ver item sobre el [estado](#7-el-estado-en-jetpackcompose)).  
@@ -192,6 +194,9 @@ Lo tercero que se necesita, es recuperar los argumentos para poder propagarlos. 
     }
 ````
 
+
+#### 11. Uso de ***Cards*** de ***Material Design*** en ***Jetpack Compose***
+Lo único que se necesita, es rodear el componente que uno quiera con el componente de [***Cards*** de ***Material Design***](https://m3.material.io/components/cards/overview).
 
 
 #### Referencias extra

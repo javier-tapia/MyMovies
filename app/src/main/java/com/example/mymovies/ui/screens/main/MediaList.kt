@@ -1,5 +1,6 @@
 package com.example.mymovies.ui.screens.main
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +15,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -27,6 +30,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
@@ -59,45 +63,52 @@ fun MediaListItem(
     navController: NavHostController,
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Card(
         modifier = modifier
-            .clickable { navController.navigate("detail/${mediaItem.id}") }
+            .clickable { navController.navigate("detail/${mediaItem.id}") },
+        elevation = 0.dp,
+//        shape = RoundedCornerShape(8.dp)
+        border = BorderStroke(1.dp, Color.LightGray),
+        backgroundColor = MaterialTheme.colors.primary,
+        contentColor = MaterialTheme.colors.secondary
     ) {
-        Box(
-            modifier = Modifier
-                .height(dimensionResource(id = R.dimen.cell_thumb_height))
-                .fillMaxWidth(),
-            contentAlignment = Alignment.Center
-        ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(mediaItem.thumb)
-                    .crossfade(2000)
-                    .build(),
-                contentDescription = null,
-                modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
-            )
-            if (mediaItem.type == MediaItem.Type.VIDEO) {
-                Icon(
-                    imageVector = Icons.Default.PlayCircleOutline,
+        Column {
+            Box(
+                modifier = Modifier
+                    .height(dimensionResource(id = R.dimen.cell_thumb_height))
+                    .fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ) {
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(mediaItem.thumb)
+                        .crossfade(2000)
+                        .build(),
                     contentDescription = null,
-                    modifier = Modifier.size(dimensionResource(id = R.dimen.cell_play_icon_size)),
-                    tint = Color.White
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+                if (mediaItem.type == MediaItem.Type.VIDEO) {
+                    Icon(
+                        imageVector = Icons.Default.PlayCircleOutline,
+                        contentDescription = null,
+                        modifier = Modifier.size(dimensionResource(id = R.dimen.cell_play_icon_size)),
+                        tint = Color.White
+                    )
+                }
+            }
+            Box(
+                contentAlignment = Alignment.Center,
+                modifier = Modifier
+                    .fillMaxWidth()
+//                    .background(MaterialTheme.colors.secondary)
+                    .padding(dimensionResource(id = R.dimen.padding_medium))
+            ) {
+                Text(
+                    text = mediaItem.title,
+                    style = MaterialTheme.typography.h6
                 )
             }
-        }
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colors.secondary)
-                .padding(dimensionResource(id = R.dimen.padding_medium))
-        ) {
-            Text(
-                text = mediaItem.title,
-                style = MaterialTheme.typography.h6
-            )
         }
     }
 }
