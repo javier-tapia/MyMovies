@@ -1,6 +1,7 @@
 package com.example.mymovies.ui.screens.main
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,16 +27,15 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.mymovies.R
 import com.example.mymovies.model.MediaItem
 import com.example.mymovies.model.getMedia
 
-//@Preview
 @Composable
-fun MediaList(modifier: Modifier = Modifier) {
+fun MediaList(navController: NavHostController, modifier: Modifier = Modifier) {
     LazyVerticalGrid(
         contentPadding = PaddingValues(dimensionResource(id = R.dimen.padding_xsmall)),
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.space_padding)),
@@ -43,16 +43,25 @@ fun MediaList(modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         items(getMedia()) { item ->
-            MediaListItem(item, Modifier.padding(dimensionResource(id = R.dimen.padding_xsmall)))
+            MediaListItem(
+                mediaItem = item,
+                navController = navController,
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_xsmall))
+            )
         }
     }
 }
 
 //@Preview(showBackground = true)
 @Composable
-fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
+fun MediaListItem(
+    mediaItem: MediaItem,
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+) {
     Column(
         modifier = modifier
+            .clickable { navController.navigate("detail/${mediaItem.id}") }
     ) {
         Box(
             modifier = Modifier
@@ -62,14 +71,14 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(item.thumb)
+                    .data(mediaItem.thumb)
                     .crossfade(2000)
                     .build(),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
-            if (item.type == MediaItem.Type.VIDEO) {
+            if (mediaItem.type == MediaItem.Type.VIDEO) {
                 Icon(
                     imageVector = Icons.Default.PlayCircleOutline,
                     contentDescription = null,
@@ -86,7 +95,7 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
                 .padding(dimensionResource(id = R.dimen.padding_medium))
         ) {
             Text(
-                text = item.title,
+                text = mediaItem.title,
                 style = MaterialTheme.typography.h6
             )
         }
@@ -96,5 +105,5 @@ fun MediaListItem(item: MediaItem, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun MediaListPreview() {
-    MediaList()
+//    MediaList(navController)
 }
